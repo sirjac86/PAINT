@@ -1,15 +1,88 @@
-[gd_scene load_steps=2 format=3 uid="uid://dxuvcsu07dnqr"]
+[gd_scene load_steps=10 format=4 uid="uid://dxuvcsu07dnqr"]
 
 [ext_resource type="Script" uid="uid://cu2g33amx4iyl" path="res://scenes/menu.gd" id="1_3bmlt"]
+[ext_resource type="TileSet" uid="uid://d03m8vvl66mr1" path="res://tileset.tres" id="2_b4j7a"]
+[ext_resource type="Script" uid="uid://bposbpdlpvv0v" path="res://portel.gd" id="3_wo48x"]
+[ext_resource type="Texture2D" uid="uid://bdxjh8drpte6v" path="res://5. Industrial Tileset/4_Industrial_Tileset_1_Foreground_Shadowless_16p.png" id="4_y0kc7"]
+[ext_resource type="PackedScene" uid="uid://cb15p8nvnyopq" path="res://Player.tscn" id="5_ne2mo"]
+[ext_resource type="Texture2D" uid="uid://bqalfvq3sjpol" path="res://Demo.png" id="6_wo48x"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_6cvei"]
+normal = Vector2(0, -5.13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wo48x"]
+size = Vector2(440, 20)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_que50"]
+radius = 40.0125
 
 [node name="level 2" type="Node2D"]
+position = Vector2(-202, 51)
 script = ExtResource("1_3bmlt")
 
-[node name="Button" type="Button" parent="."]
-offset_left = 541.0
-offset_top = 333.0
-offset_right = 628.0
-offset_bottom = 392.0
-text = "play again"
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+position = Vector2(-96, 141)
+tile_map_data = PackedByteArray("AAAAAAkAAAADAAEAAAAAAAoAAAADAAIAAAAAAAsAAAADAAIAAAAAAAwAAAADAAIAAAAAAA0AAAADAAMAAAABAA0AAAABAAAAAAACAA0AAAABAAAAAAADAA0AAAABAAAAAAAEAA0AAAACAAAAAAAHAA0AAAAAAAAAAAAIAA0AAAACAAAAAAAMAA0AAAACAAAAAAALAA0AAAAAAAAAAAAOAA0AAAAAAAAAAAAPAA0AAAACAAAAAAASAA0AAAAAAAAAAAATAA0AAAABAAAAAAAUAA0AAAABAAAAAAAVAA0AAAACAAAAAAAWAAwAAAAAAAAAAAAXAAwAAAACAAAAAAAbAAwAAAAAAAAAAAAcAAwAAAABAAAAAAAdAAwAAAACAAAAAAAgAAwAAAAAAAAAAAAhAAwAAAABAAAAAAAiAAwAAAABAAAAAAAdAA0AAAADAAIAAAAgAA0AAAADAAIAAAAdAA4AAAADAAIAAAAdAA8AAAADAAIAAAAdABAAAAADAAIAAAAdABEAAAADAAIAAAAdABIAAAADAAIAAAAdABMAAAADAAIAAAAgAA4AAAADAAIAAAAgAA8AAAADAAIAAAAgABAAAAADAAIAAAAgABEAAAADAAIAAAAgABIAAAADAAIAAAAgABMAAAADAAIAAAAgABQAAAADAAIAAAAdABQAAAADAAIAAAAdABUAAAADAAIAAAAdABYAAAADAAMAAAAgABUAAAADAAIAAAAgABYAAAADAAIAAAAjAAwAAAAFAAMAAAAjAA0AAAADAAIAAAAjAA4AAAADAAIAAAAjAA8AAAADAAIAAAAjABAAAAADAAIAAAAjABQAAAADAAIAAAAjABUAAAADAAIAAAAjABYAAAADAAMAAAAjABEAAAADAAIAAAAjABIAAAADAAIAAAAjABMAAAADAAIAAAAmAAwAAAADAAIAAAAmAA0AAAADAAIAAAAmAA4AAAADAAIAAAAmAA8AAAADAAIAAAAmABAAAAADAAIAAAAmABEAAAADAAIAAAAmABIAAAADAAIAAAAmABMAAAADAAIAAAAmABQAAAADAAIAAAAmABUAAAADAAIAAAAmABYAAAADAAMAAAAmAAsAAAADAAIAAAAmAAoAAAADAAIAAAAmAAkAAAADAAIAAAAmAAgAAAADAAEAAAAgABcAAAADAAIAAAAgABgAAAADAAIAAAAgABkAAAADAAIAAAAgABoAAAADAAIAAAAgABsAAAAEAAIAAAAfABsAAAABAAAAAAAeABsAAAABAAAAAAAdABsAAAABAAAAAAAcABsAAAACAAEAAAAbABoAAAACAAAAAAAaABoAAAAAAAAAAAAYABgAAAACAAAAAAAXABgAAAAAAAAAAAAVABYAAAACAAAAAAAUABYAAAAAAAAAAAASABQAAAACAAAAAAARABQAAAAAAAAAAAAMABYAAAADAAAAAAAKABgAAAADAAAAAAAHABoAAAADAAAAAAACABkAAAADAAAAAAD+/xcAAAABAAAAAAD9/xcAAAABAAAAAAD8/xcAAAABAAAAAAD7/xcAAAABAAAAAAAlABsAAAAAAAAAAAAmABsAAAABAAAAAAAnABsAAAABAAAAAAAoABsAAAABAAAAAAApABsAAAABAAAAAAAqABsAAAABAAAAAAArABsAAAABAAAAAAAsABsAAAABAAAAAAAtABsAAAACAAAAAAAuABkAAAAAAAAAAAAvABkAAAABAAAAAAAwABkAAAABAAAAAAAxABkAAAABAAAAAAAyABkAAAABAAAAAAD//xcAAAABAAAAAAAAABcAAAACAAAAAAD6/xcAAAAAAAAAAAAzABkAAAACAAAAAAA=")
+tile_set = ExtResource("2_b4j7a")
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[node name="Killbox" type="Area2D" parent="."]
+position = Vector2(170, 638)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killbox"]
+shape = SubResource("WorldBoundaryShape2D_6cvei")
+
+[node name="Killbox2" type="Area2D" parent="."]
+position = Vector2(166, 377)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killbox2"]
+position = Vector2(-29, 0)
+shape = SubResource("RectangleShape2D_wo48x")
+
+[node name="portel" type="Area2D" parent="."]
+position = Vector2(451, -78)
+script = ExtResource("3_wo48x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="portel"]
+position = Vector2(-588, 558)
+shape = SubResource("CircleShape2D_que50")
+
+[node name="Sprite2D" type="Sprite2D" parent="portel/CollisionShape2D"]
+position = Vector2(0.500001, 0.499989)
+scale = Vector2(0.289063, 0.174479)
+texture = ExtResource("4_y0kc7")
+metadata/_edit_group_ = true
+
+[node name="portel2" type="Area2D" parent="."]
+position = Vector2(1273, -51)
+script = ExtResource("3_wo48x")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="portel2"]
+position = Vector2(-588, 558)
+shape = SubResource("CircleShape2D_que50")
+
+[node name="Sprite2D" type="Sprite2D" parent="portel2/CollisionShape2D"]
+position = Vector2(1.49993, 4.99997)
+scale = Vector2(0.257813, 0.151042)
+texture = ExtResource("4_y0kc7")
+
+[node name="Player" parent="." instance=ExtResource("5_ne2mo")]
+position = Vector2(-70, 287)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(2.5, 2.5)
+position_smoothing_enabled = true
+
+[node name="Demo" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(249, 327)
+scale = Vector2(3.04609, 5.08611)
+texture = ExtResource("6_wo48x")
+metadata/_edit_lock_ = true
+
+[connection signal="body_entered" from="Killbox" to="Player" method="_on_killbox_body_entered"]
+[connection signal="body_entered" from="Killbox2" to="Player" method="_on_killbox_body_entered"]
+[connection signal="body_entered" from="portel" to="portel" method="_on_body_entered"]
+[connection signal="body_entered" from="portel2" to="portel2" method="_on_body_entered"]
